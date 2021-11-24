@@ -1,0 +1,207 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <p class="card-title" style="font-size: 25px;">Add Teams</p>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="teamForm">
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Team Name</label>
+                <input type="text" class="form-control" formControlName="teamName">
+                <!-- <div *ngIf="submitted && formFileds.teamName.errors" class="invalid-feedback">
+                  <div *ngIf="submitted && formFileds.teamName.errors.required">Team name is required</div>
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Description</label>
+                <input type="name" class="form-control" formControlName="description">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Location</label>
+                <select class=form-control formControlName="location">
+                  <option value="">Select location </option>
+                  <option *ngFor="let location of locationList" value=" {{location.locationId}}"> {{location.locationId}} </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row ml-auto mr-auto">
+            <div class="flex-grow-1"> </div>
+            <div class="update " style="align-self: flex-end; margin-right: 3%;">
+              <button type="submit" class="btn btn-primary btn-round" style="width: 120px; margin-right: 40px"
+                (click)="saveTeams()">Save</button>
+              <button type="submit" (click)="clear()" class="btn btn-default btn-round"
+                style="width: 120px">Clear</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <p class="card-title" style="font-size: 25px;">Add Clusters</p>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="clusterForm">
+          <!-- <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Cluster Name</label>
+                  <input type="text" class="form-control" formControlName="clusterName"
+                    [ngClass]="{'is-invalid': submitted && formFileds.teamName.errors }">
+                  <div *ngIf="submitted && formFileds.clusterName.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && formFileds.clusterName.errors.required">Team name is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Cluster Description</label>
+                  <input type="text" class="form-control" formControlName="clusterdescription">
+                </div>
+              </div>
+            </div> -->
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Location</label>
+                <select class=form-control formControlName="location">
+                  <option value="">Select Location </option>
+                  <option *ngFor="let location of locationList" value="{{location.locationId}}">
+                    {{location.locationId}} </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Team Name</label>
+                <select class=form-control formControlName="teamName">
+                  <option value="">Select Team Name </option>
+                  <option *ngFor="let team of teamList" value={{team.teamId}}>{{team.teamName}} </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label style="margin-right: 20px; font-size: 15px;">Start Date</label>
+              <ngb-datepicker #dp [(ngModel)]="smodel" (navigate)="sdate = $event.next" (click)="addStartDate(smodel)">
+              </ngb-datepicker>
+            </div>
+          </div>
+          <div class="col-md-6 pr-1">
+            <label style="margin-right: 20px; font-size: 15px;">End Date</label>
+            <ngb-datepicker #dp [(ngModel)]="emodel" (navigate)="edate = $event.next" (click)="getSeats(emodel)"
+              [disabled]="!startDateSelected">
+            </ngb-datepicker>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Dedicated Seats</label>
+              <!-- <select class=form-control formControlName="dedicatedSeats" multiple>
+                      <option value="">Select Team Name </option>
+                      <option *ngFor="let team of teams" value="team"> </option>
+                    </select> -->
+              <tag-input class="form-control" [ngModel]="[]" (onAdd)="onItemAddedToDedicated($event)"
+                (onRemove)="removeDedicatedSeats($event)">
+                <tag-input-dropdown [autocompleteItems]="items" [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
+                </tag-input-dropdown>
+              </tag-input>
+            </div>
+          </div>
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Hot Seats</label>
+              <!-- <select class=form-control formControlName="hotseats" multiple>
+                      <option value="">Select Team Name </option>
+                      <option *ngFor="let team of teams" value="team"> </option>
+                    </select> -->
+              <tag-input class="form-control" [ngModel]="[]" (onAdd)="onItemAddedToHot($event)"
+                (onRemove)="removeHotSeats($event)">
+                <tag-input-dropdown [autocompleteItems]="items" [showDropdownIfEmpty]="true" [dynamicUpdate]="false">
+                </tag-input-dropdown>
+              </tag-input>
+              <div *ngIf="duplicates.length!=0" class="error">Selected seat already booked</div>
+            </div>
+          </div>
+        </div>
+        <div class="row ml-auto mr-auto">
+          <div class="flex-grow-1"> </div>
+          <div class="update " style="align-self: flex-end; margin-right: 3%;">
+            <button type="submit" class="btn btn-primary btn-round" style="width: 120px; margin-right: 40px"
+              (click)="saveSeatsForTeam()">Save</button>
+            <button type="submit" (click)="clear()" class="btn btn-default btn-round"
+              style="width: 120px">Clear</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="card-title" style="font-size: 25px;"> Team List</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive" style=" overflow-y:hidden;">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Team ID
+              </th>
+              <th>
+                Team Name
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Location
+              </th>
+              <th>
+                Edit
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let team of teamList">
+                <td>{{ team.teamId }}</td>
+                <td>{{ team.teamName }}</td>
+                <td>{{ team.description }}</td>
+                <td>{{ team.location }}</td>
+                <td>
+                    <label class="switch">
+                        <button type="submit" class="btn btn-default btn-round"
+                        style="width: 80px">Edit</button>
+                    </label>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

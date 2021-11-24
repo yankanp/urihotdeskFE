@@ -1,0 +1,24 @@
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <a class="simple-text logo-mini">
+      <div class="logo-image-small" style="width:55px; height:50px">
+        <img src="assets/img/uri.png">
+      </div>
+    </a>
+    <a href="/dashboard" class="simple-text logo-normal">
+     URI Hot Desking
+    </a>
+  </div>
+    <ul class="nav">
+      <div *ngFor="let menuItem of menuItems">
+        <li  routerLinkActive="active" class="{{menuItem.class}}" *ngFor="let userPermission of userPermissionList">
+            <!-- *ngFor="let userPermission of userPermissionList" -->
+            <a [routerLink]="[menuItem.path]" *ngIf="userPermission.authority==menuItem.permissions">
+                <!-- *ngIf="userPermission==menuItem.permissions" -->
+                <img  src="../../assets/img/{{menuItem.icon}}" style="width:28px; height:28px;">
+                 <p class="m-0" style="display: inline-block; padding-left: 15px; color:#3393FF ">{{menuItem.title}}</p>
+            </a>
+        </li>
+      </div>
+    </ul>
+</div>

@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <p class="card-title" style="font-size: 25px;">Seat Booking</p>
+      </div>
+      <div class="card-body">
+          <form [formGroup]="bookingForm">
+        <div class="row">
+            <div class="col-md-4 pr-1">
+                <label >AD Name</label>
+                <select class=form-control formControlName="adName">
+                    <option value="">Select AD Name </option>
+                    <option *ngFor="let member of teamMemberList" value="{{member.employee}}"> {{member.employee}} </option>
+                  </select>
+              </div>
+              <div class="col-md-4 pr-1">
+                  <label >Location</label>
+                  <select class=form-control formControlName="location" (change)="getAllSeatsForLocation($event.target.value)">
+                      <option value="">Select location </option>
+                      <option *ngFor="let location of locationList" value="{{location.locationId}}"> {{location.locationId}} </option>
+                    </select>
+                </div>
+          <div class="col-md-4 pr-1" [hidden]="!locationSelected">
+            <div class="form-group">
+              <label style="margin-right: 20px; font-size: 15px;">Start Date</label>
+              <ngb-datepicker #dp [(ngModel)]="smodel" (navigate)="sdate = $event.next" (click)="getSeats(smodel)" formControlName="bookingDate">
+              </ngb-datepicker>
+            </div>
+          </div>
+
+        </div>
+      </form>
+        <div class="row">
+          <div class="row" style="margin-left: 40px;">
+            <div class="col-md-2 pr-1" *ngFor="let seat of seats">
+                <!-- <button type="submit" class="seat btn-round" (click)="selectedSeat(seat)" style="cursor: not-allowed;margin-top: 20px;"
+                [ngStyle]="changeBackground(seat)">{{seat}}</button> -->
+                <img src="../../../assets/img/chair.png" [ngStyle]="changeBackground(seat)"   (click)="selectedSeat(seat)" style="width:48px; height:48px; cursor: not-allowed;margin-top: 40px;">
+                <p style="margin-top: 0em; margin-bottom: 0em; " [ngStyle]="seatOwner(seat)" style="visibility: hidden; margin: 0px;font-weight: bold;" >{{ownerName}}</p>
+                <p style="margin-top: 0em; margin-bottom: 0em;font-weight: bold;">{{seat}}</p>
+                <p style="margin-top: 0em; margin-bottom: 0em; " [ngStyle]="yourSeat(seat)" style="visibility: hidden; margin: 0px; color: red;font-weight: bold;"  >Your Seat</p>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-4 pr-1" [hidden]="!locationSelected">
+          <label style="font-weight: bold;">Selected seat ID :</label>
+          <input type="text" class="form-control" value="{{selectedSeatId}}" disabled>
+          </div>
+        </div>
+        <div class="row" style="margin-left: 30px;margin-top: 50px;"  [hidden]="!locationSelected">
+          <img src="../../../assets/img/chair.png" style="margin:20px; width:48px; height:48px;" disable>
+          <!-- <button type="submit" class="btn btn-round" style="background-color: #9D9999; margin:20px;" disabled></button> -->
+            <p style="color:#3393FF; margin-right:30px">All seats</p>
+            <img src="../../../assets/img/chair.png" style="margin:20px; width:48px; height:48px; border: 3px solid red;" disable>
+            <!-- <button type="submit" class="btn  btn-round" style="background-color: #9D9999; margin:20px; border: 3px solid red" disabled></button> -->
+            <p style="color:red">Seats for team</p>
+            <img src="../../../assets/img/chair.png" style="margin:20px; width:48px; height:48px; border: 3px solid #53AA33" disable>
+            <!-- <button type="submit" class="btn  btn-round" style="background-color: #53AA33; margin:20px;" disabled></button> -->
+            <p style="color:#53AA33">Available hot seats</p>
+            <img src="../../../assets/img/chair.png" style="margin:20px; width:48px; height:48px; border: 3px solid #4FB0F9" disable>
+            <!-- <button type="submit" class="btn  btn-round" style="background-color: #4FB0F9; margin:20px;" disabled></button> -->
+            <p style="color:#4FB0F9">Available dedicated seats</p>
+
+        </div>
+        <div class="row">
+          <div class="flex-grow-1"> </div>
+          <div class="update " style="align-self: flex-end; margin-right: 3%;">
+            <button type="submit" class="btn btn-primary btn-round" style="width: 120px; margin-right: 40px"
+              (click)="bookDedicatedSeats()" [disabled]='isDisable'>Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

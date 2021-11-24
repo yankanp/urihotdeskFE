@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <p class="card-title" style=" font-size: 25px;">Role Permissions</p>
+        </div>
+        <div class="card-body">
+          <form>
+
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <select class=form-control (change)="onSelectChanged($event.target.value)">
+                        <option value=""> Select Role </option>
+                        <option value="adminPermissions">Admin Permissions</option>
+                        <option value="superAdminPresmission">Super Admin Permissions</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="checkbox mb-1" onclick="return false">
+                        <label><input type="checkbox" [checked]="permissions.indexOf('View User Role') != -1"><p class="checkboxText">User roles</p></label>
+                    </div>
+                    <div class="checkbox mb-1" onclick="return false">
+                        <label><input type="checkbox" [checked]="permissions.indexOf('Add Users') != -1"><p class="checkboxText">User profile</p></label>
+                    </div>
+                    <div class="checkbox mb-1" onclick="return false">
+                        <label><input type="checkbox" [checked]="permissions.indexOf('Trailers') != -1"><p class="checkboxText">Marketing content</p></label>
+                    </div>
+                    <div class="checkbox mb-1" onclick="return false">
+                        <label><input type="checkbox" [checked]="permissions.indexOf('Promotions') != -1"><p class="checkboxText">Promotions</p></label>
+                    </div>
+                    <!-- <div class="checkbox mb-1" onclick="return false">
+                        <label><input type="checkbox" [checked]="permissions.indexOf('ScratchCard') != -1"><p class="checkboxText">Scratch card</p></label>
+                    </div> -->
+                    <div class="checkbox mb-1" onclick="return false">
+                        <label><input type="checkbox" [checked]="permissions.indexOf('Bundle') != -1"><p class="checkboxText">Data packages</p></label>
+                    </div>
+                </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

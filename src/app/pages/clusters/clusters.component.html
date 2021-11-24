@@ -1,0 +1,114 @@
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <p class="card-title" style="font-size: 25px;">Add Clusters</p>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="clusterForm">
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Cluster Name</label>
+                <input type="text" class="form-control" formControlName="clusterName"
+                  [ngClass]="{'is-invalid': submitted && formFileds.teamName.errors }">
+                <div *ngIf="submitted && formFileds.clusterName.errors" class="invalid-feedback">
+                  <div *ngIf="submitted && formFileds.clusterName.errors.required">Team name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Cluster Description</label>
+                <input type="text" class="form-control" formControlName="clusterdescription">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Location</label>
+                <select class=form-control>
+                  <option value="">Select Location </option>
+                  <option *ngFor="let location of locations" value="location"> </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Team Name</label>
+                <select class=form-control>
+                  <option value="">Select Team Name </option>
+                  <option *ngFor="let team of teams" value="team"> </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Dedicated Seats</label>
+                <input type="number" NumberDirective class="form-control" formControlName="dedicatedSeats">
+              </div>
+            </div>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Hot Seats</label>
+                <input type="number" NumberDirective class="form-control" formControlName="hotseats">
+              </div>
+            </div>
+          </div>
+          <div class="row ml-auto mr-auto">
+            <div class="flex-grow-1"> </div>
+            <div class="update " style="align-self: flex-end; margin-right: 3%;">
+              <button type="submit" class="btn btn-primary btn-round" style="width: 120px; margin-right: 40px"
+                (click)="saveSeatsForTeam()" >Save</button>
+              <button type="submit" (click)="clear()" class="btn btn-default btn-round"
+                style="width: 120px">Clear</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="card-title" style="font-size: 25px;"> Team List</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive" style=" overflow-y:hidden;">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Cluster Name
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Location
+              </th>
+              <th>
+                Team Name
+              </th>
+              <th>
+                  No of dedicated seats
+              </th>
+              <th>
+                No of hot seats
+              </th>
+              <th>
+                Edit
+              </th>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

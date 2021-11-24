@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <p class="card-title" style="font-size: 25px;">Add seats</p>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="locationForm">
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Location</label>
+                    <select class=form-control  formControlName="location">
+                      <option value="">Select location </option>
+                      <option *ngFor="let location of locationList" value="{{location.locationId}}">{{location.locationId}}  </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Seat Id</label>
+                  <input type="name" class="form-control" formControlName="seatId">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description</label>
+                  <input type="name" class="form-control" formControlName="description">
+                </div>
+              </div>
+            </div>
+            <div class="row ml-auto mr-auto">
+              <div class="flex-grow-1"> </div>
+              <div class="update " style="align-self: flex-end; margin-right: 3%;">
+                <button type="submit" class="btn btn-primary btn-round"  style="width: 120px; margin-right: 40px" (click)="saveLocation()">Save</button>
+                <button type="submit" (click)="clear()" class="btn btn-default btn-round" style="width: 120px">Clear</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title" style="font-size: 25px;"> Seat List</p>
+        </div>
+        <div class="card-body" >
+          <div class="table-responsive" style=" overflow-y:hidden;">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Location Id
+                </th>
+                <th>
+                  No of seats
+                </th>
+                <th>
+                 Description
+                </th>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let location of locationList">
+                  <td>{{ location.locationId }}</td>
+                  <td>{{ location.totSeatNumber }}</td>
+                  <td>{{ location.description }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
