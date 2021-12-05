@@ -192,7 +192,7 @@ export class LeadSeatBookingComponent implements OnInit {
 
       for (let val of this.allBookings) {
         if(val.seatId === seatId){
-          if (val.employeeId === this.userName) {
+          if (val.employeeId === this.userName.split("_")[0]) {
             return { 'visibility': 'visible' };
           }
           else if(val.employeeId !== this.userName){
@@ -212,11 +212,11 @@ export class LeadSeatBookingComponent implements OnInit {
     if (this.allBookings != null) {
       for (let val of this.allBookings) {
         if(val.seatId === seatId){
-          if (val.employeeId === this.userName) {
+          if (val.employeeId === this.userName.split("_")[0]) {
             return { 'visibility': 'hidden' };
           }
 
-          this.ownerName= val.employeeId.match(/[^_]+_[^_]+/g).toString();
+          this.ownerName= val.employeeId.toString();
           return{ 'visibility': 'visible' };
         }
 

@@ -29,6 +29,7 @@ export class EmployeeSeatBookingComponent implements OnInit {
   locationSelected:boolean=false;
   changeText: boolean;
   public allBookings: any[] = null;
+  ownerName = '';
   constructor(private fb: FormBuilder, private calendar: NgbCalendar, private toaster: ToastrService,
     private employeeSeatBookingService: EmployeeSeatBookingService,private route: ActivatedRoute,) {
     this.seatBookingForm = fb.group({
@@ -166,11 +167,12 @@ export class EmployeeSeatBookingComponent implements OnInit {
   yourSeat(seatId: any){
     let displayName = localStorage.getItem('userName');
     let userName = displayName.match(/[^_]+_[^_]+/g).toString();
-
+    userName=userName.split("_")[0];
     if (this.allBookings != null) {
 
       for (let val of this.allBookings) {
         if(val.seatId === seatId){
+          console.log('yankan log ',userName,val.employeeId);
           if (val.employeeId === userName) {
             return { 'visibility': 'visible' };
           }
